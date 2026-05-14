@@ -1,0 +1,35 @@
+你不用安装 Android Studio。按下面做，网页会自动帮你生成 APK。
+
+一、准备
+1. 打开 https://github.com
+2. 注册/登录账号
+
+二、创建仓库
+1. 右上角点 +
+2. 点 New repository
+3. Repository name 填：RefCanvas-APK
+4. 选择 Public 或 Private 都可以
+5. 点 Create repository
+
+三、上传本文件夹里的全部文件
+1. 进入刚创建的仓库
+2. 点 uploading an existing file
+3. 把这个文件夹里的所有内容拖进去
+   注意：要拖 app、.github、build.gradle、settings.gradle 等，不要只拖 zip
+4. 页面最下面点 Commit changes
+
+四、自动打包 APK
+1. 点仓库上方 Actions
+2. 左侧点 自动打包 APK
+3. 点 Run workflow
+4. 再点绿色 Run workflow
+5. 等它跑完，点最新的一条记录
+6. 页面下方 Artifacts 下载：RefCanvas-debug-apk
+7. 解压后里面就是 app-debug.apk
+
+如果 Actions 没有自动出现：
+- 确认你上传了 .github/workflows/build-apk.yml
+- Windows 有时隐藏 .github 文件夹；直接把整个解压后的文件夹拖到 GitHub 上传页面即可
+
+APK 安装提示：
+- 这是 debug 测试包，手机可能提示“未知来源”，允许后即可安装。
