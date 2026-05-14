@@ -1,0 +1,35 @@
+name: 自动打包 APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    name: 生成 Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 下载项目代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: 安装 Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: 打包 Debug APK
+        run: gradle assembleDebug --no-daemon
+
+      - name: 上传 APK 文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: RefCanvas-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
